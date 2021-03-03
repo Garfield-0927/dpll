@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+D:/garfield/study/data structure/dpll/Global.h
+iostream
+-
+fstream
+-
+ctime
+-
+
+D:/garfield/study/data structure/dpll/cnf-parser.h
+iostream
+D:/garfield/study/data structure/dpll/iostream
+fstream
+D:/garfield/study/data structure/dpll/fstream
+cstring
+D:/garfield/study/data structure/dpll/cstring
+stdlib.h
+D:/garfield/study/data structure/dpll/stdlib.h
+global.h
+D:/garfield/study/data structure/dpll/Global.h
+
+D:/garfield/study/data structure/dpll/main.cpp
+Global.h
+D:/garfield/study/data structure/dpll/Global.h
+welcome.h
+D:/garfield/study/data structure/dpll/welcome.h
+cnf-parser.h
+D:/garfield/study/data structure/dpll/cnf-parser.h
+
+D:/garfield/study/data structure/dpll/welcome.h
+Global.h
+D:/garfield/study/data structure/dpll/Global.h
+
