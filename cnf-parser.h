@@ -8,7 +8,7 @@
 #include "stdlib.h"
 #include "global.h"
 using namespace std;
-ClauseNode * openCnf(string filename){
+ClauseNode * openCnf(string filename, int &VARNUM){
 
     // 生成文件路径
     string filebase = "D:\\garfield\\study\\data structure\\dpll\\cnf\\";
@@ -36,6 +36,7 @@ ClauseNode * openCnf(string filename){
         string cnf;
         int VarNum, ClauseNum;
         myCnf>>cnf>>VarNum>>ClauseNum;
+        VARNUM = VarNum;
 //      cout<<"variable number is:"<<VarNum<<endl;
 //      cout<<"clause number is:"<<ClauseNum<<endl;
 
@@ -56,7 +57,7 @@ ClauseNode * openCnf(string filename){
             LiteralNode * LiteralFront = new LiteralNode;
             LiteralFront->data = temp;
             ClauseRear->Literal = LiteralFront;
-            ClauseRear->Num = i+1;
+            ClauseRear->Num++;
 
 
             // 2nd && 3rd literals
@@ -65,6 +66,7 @@ ClauseNode * openCnf(string filename){
                 LiteralNode * LiteralRear = new LiteralNode;
                 LiteralFront->NextLiteral = LiteralRear;
                 LiteralRear->data = temp;
+                ClauseRear->Num++;
                 LiteralFront = LiteralFront->NextLiteral;
                 myCnf>>temp;
             }

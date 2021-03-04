@@ -3,6 +3,7 @@
 
 CMakeFiles/dpll.dir/main.cpp.obj: ../Global.h
 CMakeFiles/dpll.dir/main.cpp.obj: ../cnf-parser.h
+CMakeFiles/dpll.dir/main.cpp.obj: ../dpll-slover.h
 CMakeFiles/dpll.dir/main.cpp.obj: ../main.cpp
 CMakeFiles/dpll.dir/main.cpp.obj: ../welcome.h
 
