@@ -80,16 +80,19 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="D:/garfield/study/data structure/dpll/Global.h">
+			<Option target="dpll"/>
+		</Unit>
 		<Unit filename="D:/garfield/study/data structure/dpll/cnf-parser.h">
 			<Option target="dpll"/>
 		</Unit>
 		<Unit filename="D:/garfield/study/data structure/dpll/dpll-slover.h">
 			<Option target="dpll"/>
 		</Unit>
-		<Unit filename="D:/garfield/study/data structure/dpll/global.h">
+		<Unit filename="D:/garfield/study/data structure/dpll/main.cpp">
 			<Option target="dpll"/>
 		</Unit>
-		<Unit filename="D:/garfield/study/data structure/dpll/main.cpp">
+		<Unit filename="D:/garfield/study/data structure/dpll/sudoku.h">
 			<Option target="dpll"/>
 		</Unit>
 		<Unit filename="D:/garfield/study/data structure/dpll/CMakeLists.txt">

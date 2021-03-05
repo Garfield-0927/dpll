@@ -2,6 +2,7 @@
 #include "welcome.h"
 #include "cnf-parser.h"
 #include "dpll-slover.h"
+#include "sudoku.h"
 const double CLOCKS_PER_SECOND = ((clock_t)1000);
 const double CLOCKS_PER_MILLISECOND = ((clock_t)1);
 int main() {
@@ -10,6 +11,10 @@ int main() {
     while (option){
         cin>>option;
         if (option == 1){
+            GenerateFullPuzzle(8);
+
+
+
 
         }else if (option == 2){
             string filename = "fla-600-1.cnf";
