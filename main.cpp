@@ -11,13 +11,13 @@ int main() {
     while (option){
         cin>>option;
         if (option == 1){
-            GenerateFullPuzzle(8);
+            PuzzleToCnf("sudoku123456.txt", "sudoku123456.cnf");
 
 
 
 
         }else if (option == 2){
-            string filename = "fla-600-1.cnf";
+            string filename = "sud00021.cnf";
 //            cin>>filename;
 
             int VARNUM = 0;

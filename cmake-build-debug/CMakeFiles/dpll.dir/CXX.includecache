@@ -13,6 +13,8 @@ fstream
 -
 ctime
 -
+math.h
+D:/garfield/study/data structure/dpll/math.h
 
 D:/garfield/study/data structure/dpll/cnf-parser.h
 iostream
@@ -47,6 +49,10 @@ Global.h
 D:/garfield/study/data structure/dpll/Global.h
 vector
 D:/garfield/study/data structure/dpll/vector
+math.h
+D:/garfield/study/data structure/dpll/math.h
+string
+D:/garfield/study/data structure/dpll/string
 
 D:/garfield/study/data structure/dpll/welcome.h
 Global.h

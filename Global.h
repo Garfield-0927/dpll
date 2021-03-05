@@ -8,7 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include <ctime>
-
+#include "math.h"
 using namespace std;
 #define TRUE 1
 #define FALSE 0
