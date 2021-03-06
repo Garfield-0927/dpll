@@ -11,8 +11,40 @@ int main() {
     while (option){
         cin>>option;
         if (option == 1){
-            PuzzleToCnf("sudoku123456.txt", "sudoku123456.cnf");
+            PuzzleToCnf("sudoku1.txt", "sudoku1.cnf");
+            string filename = "sudoku1.cnf";
+//            cin>>filename;
 
+            int VARNUM = 0;
+            ClauseNode * ClauseHead = nullptr;
+            ClauseHead = openCnf(filename, VARNUM);
+            int * res = (int*)malloc(VARNUM*sizeof(int));
+            memset(res,-1,sizeof(res));
+            for (int j = 0; j < VARNUM; ++j) {
+                res[j] = -1;
+            }
+            clock_t start,end;
+            srand(unsigned(time(NULL)));
+            start = clock();
+            int value = DPLL(ClauseHead, res);
+            end = clock();
+            if (value){
+                cout << "S  1" << endl;
+                for (int i = 0; i < 36; ++i) {
+                    if (res[i] == -1){
+                        cout << "1 ";
+                    } else {
+                        cout << res[i] << " ";
+                    }
+                    if (!((i+1)%6)){
+                        cout<<endl;
+                    }
+                }
+            } else {
+                cout<<"S  0"<<endl;
+            }
+
+            cout<<"T "<<(double)(end-start)/CLOCKS_PER_SECOND *1000<<" ms\n";
 
 
 
@@ -34,7 +66,7 @@ int main() {
             int value = DPLL(ClauseHead, res);
             end = clock();
             if (value){
-                cout << "S  Satisfiable" << endl;
+                cout << "S  1" << endl;
                 for (int i = 0; i < VARNUM; ++i) {
                     if (res[i] == -1){
                         cout << "1 ";
@@ -44,10 +76,10 @@ int main() {
                 }
                 cout<<endl;
             } else {
-                cout<<"S  No Answer"<<endl;
+                cout<<"S  0"<<endl;
             }
 
-            cout<<"T "<<(double)(end-start)/CLOCKS_PER_SECOND <<" s\n";
+            cout<<"T "<<(double)(end-start)/CLOCKS_PER_SECOND *1000<<" ms\n";
 
 
         }else if (!option){

@@ -301,9 +301,142 @@ void PuzzleToCnf(string filename, string outputCnf){
     }
 
 
+    // 处理不能有相同的行和列
+    for (int l = 0; l < 6 ; ++l) {
+        for (int j = 0; j < 6; ++j) {
+            temp[l][j] = l*6+j+1;
+        }
+    }
 
 
+    int totalliteral = size*size;
 
+    // 行
+    for (int i = 0; i < 6; ++i) {
+        for (int j = i+1; j < 6; ++j) {
+            for (int k = 0; k < 6; ++k) {
+                totalliteral++;
+                cnf[known][0] = temp[i][k];
+                cnf[known][1] = -totalliteral;
+                cnf[known][2] = 0;
+                known++;
+                cnf[known][0] = temp[j][k];
+                cnf[known][1] = -totalliteral;
+                cnf[known][2] = 0;
+                known++;
+                cnf[known][0] = -temp[i][k];
+                cnf[known][1] = -temp[j][k];
+                cnf[known][2] = totalliteral;
+                cnf[known][3] = 0;
+                known++;
+
+                totalliteral++;
+                cnf[known][0] = -temp[i][k];
+                cnf[known][1] = -totalliteral;
+                cnf[known][2] = 0;
+                known++;
+                cnf[known][0] = -temp[j][k];
+                cnf[known][1] = -totalliteral;
+                cnf[known][2] = 0;
+                known++;
+                cnf[known][0] = temp[i][k];
+                cnf[known][1] = temp[j][k];
+                cnf[known][2] = totalliteral;
+                cnf[known][3] = 0;
+                known++;
+
+                totalliteral++;
+                cnf[known][0] = -(totalliteral-2);
+                cnf[known][1] = totalliteral;
+                cnf[known][2] = 0;
+                known++;
+                cnf[known][0] = -(totalliteral-1);
+                cnf[known][1] = totalliteral;
+                cnf[known][2] = 0;
+                known++;
+                cnf[known][0] = totalliteral-1;
+                cnf[known][1] = totalliteral-2;
+                cnf[known][2] = -totalliteral;
+                cnf[known][3] = 0;
+                known++;
+            }
+            int l,count=0;
+            for ( l = totalliteral-3*6+3; l <= totalliteral; l+=3) {
+                cnf[known][count] = -l;
+                count++;
+            }
+            cnf[known][count] = 0;
+            known++;
+        }
+    }
+
+
+    // 列
+    for (int i = 0; i < 6; ++i) {
+        for (int j = i+1; j < 6; ++j) {
+            int zjh = temp[i][j];
+            temp[i][j] = temp[j][i];
+            temp[j][i] = zjh;
+        }
+    }
+    for (int i = 0; i < 6; ++i) {
+        for (int j = i+1; j < 6; ++j) {
+            for (int k = 0; k < 6; ++k) {
+                totalliteral++;
+                cnf[known][0] = temp[i][k];
+                cnf[known][1] = -totalliteral;
+                cnf[known][2] = 0;
+                known++;
+                cnf[known][0] = temp[j][k];
+                cnf[known][1] = -totalliteral;
+                cnf[known][2] = 0;
+                known++;
+                cnf[known][0] = -temp[i][k];
+                cnf[known][1] = -temp[j][k];
+                cnf[known][2] = totalliteral;
+                cnf[known][3] = 0;
+                known++;
+
+                totalliteral++;
+                cnf[known][0] = -temp[i][k];
+                cnf[known][1] = -totalliteral;
+                cnf[known][2] = 0;
+                known++;
+                cnf[known][0] = -temp[j][k];
+                cnf[known][1] = -totalliteral;
+                cnf[known][2] = 0;
+                known++;
+                cnf[known][0] = temp[i][k];
+                cnf[known][1] = temp[j][k];
+                cnf[known][2] = totalliteral;
+                cnf[known][3] = 0;
+                known++;
+
+                totalliteral++;
+                cnf[known][0] = -(totalliteral-2);
+                cnf[known][1] = totalliteral;
+                cnf[known][2] = 0;
+                known++;
+                cnf[known][0] = -(totalliteral-1);
+                cnf[known][1] = totalliteral;
+                cnf[known][2] = 0;
+                known++;
+                cnf[known][0] = totalliteral-1;
+                cnf[known][1] = totalliteral-2;
+                cnf[known][2] = -totalliteral;
+                cnf[known][3] = 0;
+                known++;
+            }
+
+            int l,count=0;
+            for ( l = totalliteral-3*6+3; l <= totalliteral; l+=3) {
+                cnf[known][count] = -l;
+                count++;
+            }
+            cnf[known][count] = 0;
+            known++;
+        }
+    }
 
 
     cout << endl;
@@ -317,13 +450,20 @@ void PuzzleToCnf(string filename, string outputCnf){
 
 
     // To  File
-    string outputPrefix = "D:\\garfield\\study\\data structure\\dpll\\sudoku\\cnf\\";
+    string outputPrefix = "D:\\garfield\\study\\data structure\\dpll\\cnf\\";
     string outpath;
     outpath = outputPrefix.append(outputCnf);
     ofstream myCnf(outpath);
-    int test[10] = {1,2,3,4,5,6,7,8,9,0};
     for (int i = 0; i < 10; ++i) {
-        myCnf<<test[i]<<" ";
+        myCnf<<"c"<<"\n"<<"c"<<"\n";
+    }
+    myCnf<<"p cnf "<< totalliteral<<" "<<known<<"\n";
+    for (int i = 0; i < known; ++i) {
+        int j = 0;
+        for (; cnf[i][j]!=0; ++j) {
+            myCnf<<cnf[i][j]<<" ";
+        }
+        myCnf<<cnf[i][j]<<"\n";
     }
     myCnf.close();
 
